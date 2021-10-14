@@ -8,17 +8,21 @@ const Input = styled.input`
   background: none;
   outline: none;
   color: ${allColors.mainColor};
+  width: 20rem;
+  height: 2rem;
 `;
 
 const Button = styled.button`
-    background-color: transparent;
-    border: 1px solid ${allColors.mainColor};
-    color: ${allColors.mainColor};
+  background-color: transparent;
+  border: 1px solid ${allColors.mainColor};
+  color: ${allColors.mainColor};
+  margin-left: 30px;
+  font-size: 25px;
 `;
 
-const FormTask = () => {
+const FormTask = ({ handleSubmit }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Input name="title" type="text" />
       <Button>Añadir Tarea</Button>
     </form>

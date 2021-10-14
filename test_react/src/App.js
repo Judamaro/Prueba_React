@@ -12,16 +12,44 @@ const GlobalStyle = createGlobalStyle`
     text-align: center;
     margin: 0;
   }
+
+  h1{
+    font-size: 3rem;
+  }
 `;
 
-function App() {
-  return (
-    <>
-      <GlobalStyle />
-      <h1>To do list</h1>
-      <FormTask />
-    </>
-  );
+class App extends Component {
+  state = {
+    task: [
+      {
+        title: "test",
+        done: false,
+      },
+    ],
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  render() {
+    const { task } = this.state;
+
+    return (
+      <>
+        <GlobalStyle />
+        <h1>TO DO LIST</h1>
+        <FormTask handleSubmit={this.handleSubmit} />
+        <div>
+          {
+            task.map(task=>(
+              <p>{task.title}</p>
+            ))
+          }
+        </div>
+      </>
+    );
+  }
 }
 
 export default App;
