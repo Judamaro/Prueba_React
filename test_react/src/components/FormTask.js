@@ -18,6 +18,13 @@ const Button = styled.button`
   color: ${allColors.mainColor};
   margin-left: 30px;
   font-size: 25px;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${allColors.mainColor};
+    color: #222;
+  }
 `;
 
 const FormTask = ({ handleSubmit }) => {
