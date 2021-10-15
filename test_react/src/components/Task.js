@@ -9,7 +9,7 @@ const TaskContainer = styled.div`
   align-items: center;
   padding: 0 1rem;
   width: 100%;
-  max-width: 500px;
+  max-width: 700px;
   margin: 1rem auto;
   border-radius: 5px;
 `;
@@ -31,19 +31,21 @@ const TaskButton = styled.button`
 `;
 
 const TaskText = styled.p`
-  font-size: 1.3rem;
+  font-size: 1rem;
   color: #fff;
   text-decoration: ${({ done }) => (done ? "line-through" : "none")};
 `;
 
-const Task = ({ title, color, done, handleCompleteTask, handleDeleteTask }) => (
+const Task = ({ title, color, done, handleCompleteTask, handleDeleteTask, handleEditTask }) => (
   <TaskContainer color={color}>
     <input
       type="checkbox"
       onChange={handleCompleteTask}
       defaultChecked={done}
     />
+    
     <TaskText done={done}>{title}</TaskText>
+    <TaskButton onClick={handleEditTask}>Editar</TaskButton>
     <TaskButton onClick={handleDeleteTask}>Borrar</TaskButton>
   </TaskContainer>
 );

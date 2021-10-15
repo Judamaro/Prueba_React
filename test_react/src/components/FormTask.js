@@ -20,6 +20,7 @@ const Button = styled.button`
   font-size: 25px;
   border-radius: 5px;
   cursor: pointer;
+  padding: 0.3rem 0.3rem;
 
   &:hover {
     background-color: ${allColors.mainColor};
@@ -27,10 +28,11 @@ const Button = styled.button`
   }
 `;
 
-const FormTask = ({ handleSubmit }) => {
+const FormTask = ({ handleSubmit, fecthApi }) => {
   return (
     <form onSubmit={handleSubmit}>
       <Input name="title" type="text" />
+      <Button onClick={fecthApi}>Aleatorio</Button>
       <Button>Añadir Tarea</Button>
     </form>
   );

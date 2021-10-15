@@ -25,12 +25,15 @@ const urlApi = "https://catfact.ninja/facts";
 class App extends Component {
   state = {
     task: [
-      {
-        title: "Test",
-        color: allColors.colors[1],
-        done: false,
-      },
+      
     ],
+  };
+
+  fecthApi = async () => {
+    const response = await fetch(urlApi);
+    const respondeParser = await response.json();
+    const factToUse = respondeParser.data[0];
+    this.createNewTask(factToUse.fact);
   };
 
   handleSubmit = (e) => {
@@ -77,6 +80,14 @@ class App extends Component {
     this.setState({ task: currentTask });
   };
 
+  handleEditTask = (id) => {
+    let currentTask = this.state.task;
+
+    currentTask = currentTask.filter((task) => task.id === id);
+
+    this.setState({ task: currentTask });
+  };
+
   render() {
     const { task } = this.state;
 
@@ -84,7 +95,7 @@ class App extends Component {
       <>
         <GlobalStyle />
         <h1>TO DO LIST</h1>
-        <FormTask handleSubmit={this.handleSubmit} />
+        <FormTask handleSubmit={this.handleSubmit} fecthApi={this.fecthApi} />
 
         {this.state.task.length === 0 && <h2>No hay actividades aun</h2>}
 
@@ -97,6 +108,7 @@ class App extends Component {
               color={task.color}
               handleCompleteTask={() => this.handleCompleteTask(task.id)}
               handleDeleteTask={() => this.handleDeleteTask(task.id)}
+              handleEditTask={() => this.handleEditTask(task.id)}
             />
           ))}
         </div>
